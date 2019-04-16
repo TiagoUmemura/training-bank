@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import { DataService } from './cadastro-clientes.service';
 
 @Component({
   selector: 'app-cadastro-clientes',
@@ -9,9 +10,13 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class CadastroClientesComponent implements OnInit {
 
   formCadastro: FormGroup;
-  conversao;
+  conversaoJson: string;
 
-  constructor( private formBuilder: FormBuilder ) { }
+  constructor(private formBuilder: FormBuilder, private dataService: DataService) {
+    this.dataService.get_usuarios().subscribe((res: any[]) => {
+      console.log(res);
+    });
+  }
 
   ngOnInit() {
     this.formCadastro = this.formBuilder.group({
@@ -23,9 +28,12 @@ export class CadastroClientesComponent implements OnInit {
     });
   }
 
-  cadastro(){
-    // localStorage.setItem('cadastro', this.conversao);
-    console.log(this.formCadastro.controls);
+  cadastro() {
+    this.conversaoJson = JSON.stringify(this.formCadastro.value);
+    console.log(this.conversaoJson);
+    this.dataService.post_usuarios(this.conversaoJson).subscribe((res: any[]) => {
+      console.log(res);
+    });
   }
 
 }
