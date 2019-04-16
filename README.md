@@ -26,10 +26,16 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-##How to install Angular Material and bootstrap
+## How to install Angular Material and bootstrap
 
 npm install --save @angular/material @angular/cdk
 
 npm install --save @angular/animations
 
 npm install bootstrap --save
+
+## Json server
+
+npm install -g json-server
+
+json-server info.json
